@@ -1,0 +1,13 @@
+# python
+__pycache__
+*.py[co]
+
+# notebook
+.ipynb_checkpoints
+
+# nbconvert and latex
+*.out
+*.aux
+*.log
+*_files
+
