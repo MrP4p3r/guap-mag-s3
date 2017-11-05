@@ -1,0 +1,58 @@
+
+
+((* extends 'article.tplx' *))
+
+
+((* block docclass *))
+\documentclass[12pt,a4paper]{article}
+((* endblock docclass *))
+
+
+((* block margins *))((* endblock margins *))
+
+
+((* block packages *))
+  ((=( super() )=))
+  ((* include 'nbc_packages.tplx' *))
+  \usepackage{qsettings}
+((* endblock packages *))
+
+
+((* block definitions *))
+  ((( super() )))
+
+  ((* block docprops *))
+  \doctype{REP}
+
+  \kafedra{Кафедра вычислительных систем и сетей}
+
+  \profrank{REPLACE}
+  \profname{REPLACE}
+
+  \docsubject{REPLACE}
+  \docdiscip{REPLACE}
+
+  \studclass{4645М}
+  \studname{Гетманенко Г. В.}
+
+  \docfooter{\the\year}
+  ((* endblock docprops *))
+((* endblock definitions *))
+
+
+((* block maketitle *))
+  \makeqtitle
+  \setcounter{page}{2}
+((* endblock maketitle *))
+
+
+((* macro draw_figure(filename) -*))
+((* set filename = filename | posix_path *))
+((*- block figure scoped -*))
+    \begin{center}
+        \adjustimage{max size={0.6\linewidth}{0.6\paperheight}}{((( filename )))}
+    \end{center}
+    { \hspace*{\fill} \\}
+((*- endblock figure -*))
+((*- endmacro *))
+
