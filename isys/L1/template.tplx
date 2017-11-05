@@ -1,0 +1,19 @@
+((* extends 'nbc_freelabki.tplx' *))
+
+((* block docprops *))
+  \doctype{REP}
+
+  \kafedra{Кафедра вычислительных систем и сетей}
+
+  \profrank{доц., канд. техн. наук}
+  \profname{Соловьев Н. В.}
+
+  \docsubject{Кластерный анализ в распознавании образов}
+  \docdiscip{Интеллектуальные системы}
+
+  \studclass{4645М}
+  \studname{Гетманенко Г. В.}
+
+  \docfooter{\the\year}
+((* endblock docprops *))
+
