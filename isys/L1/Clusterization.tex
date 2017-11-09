@@ -343,7 +343,7 @@
     Функции для расчета расстояния между точками. Используется расстояние
 Евклида:
 
-\[ \sum_{i=1}^{n} (x_i - y_i)^2. \]
+\[ \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}. \]
 
 И расстояние Канберра:
 
@@ -354,7 +354,7 @@
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}2}]:} \PY{k}{def} \PY{n+nf}{euclidian\PYZus{}distances}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{p}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:}
-            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{y}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{n}{p}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{y}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{n}{p}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
         
         \PY{k}{def} \PY{n+nf}{canberra\PYZus{}distances}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{:}
             \PY{n}{divisor} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{+}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{y}\PY{p}{)}
@@ -415,7 +415,7 @@
 {\color{incolor}In [{\color{incolor}4}]:} \PY{k+kn}{from} \PY{n+nn}{pprint} \PY{k}{import} \PY{n}{pprint}
         
         \PY{k}{def} \PY{n+nf}{generate\PYZus{}colors\PYZus{}and\PYZus{}markers}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
-            \PY{n}{markers} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZca{}*hDsv\PYZlt{}\PYZgt{}x+}\PY{l+s+s1}{\PYZsq{}}
+            \PY{n}{markers} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{o\PYZca{}*hDsv\PYZlt{}\PYZgt{}x+.}\PY{l+s+s1}{\PYZsq{}}
             \PY{n}{result} \PY{o}{=} \PY{p}{[}\PY{p}{]}
             \PY{n}{to\PYZus{}hex} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uint8}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{tobytes}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{hex}\PY{p}{(}\PY{p}{)}
             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
@@ -450,7 +450,7 @@
     Расстояние Евклида.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{try\PYZus{}clusterize}\PY{p}{(}\PY{l+m+mi}{56}\PY{p}{,} \PY{n}{euclidian\PYZus{}distances}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{try\PYZus{}clusterize}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{,} \PY{n}{euclidian\PYZus{}distances}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -478,7 +478,7 @@
     { \hspace*{\fill} \\}
     \newpage
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{try\PYZus{}clusterize}\PY{p}{(}\PY{l+m+mi}{136}\PY{p}{,} \PY{n}{euclidian\PYZus{}distances}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{try\PYZus{}clusterize}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{n}{euclidian\PYZus{}distances}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -505,24 +505,23 @@
     { \hspace*{\fill} \\}
     \newpage
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{try\PYZus{}clusterize}\PY{p}{(}\PY{l+m+mi}{272}\PY{p}{,} \PY{n}{euclidian\PYZus{}distances}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{try\PYZus{}clusterize}\PY{p}{(}\PY{l+m+mi}{17}\PY{p}{,} \PY{n}{euclidian\PYZus{}distances}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
 \{(-0.5, 12.5, -23.0): [(0.0, 16.0, -16.0), (-1.0, 9.0, -30.0)],
- (2.44, 5.0, 4.44): [(0.0, 1.0, 1.0),
-                     (0.0, 1.0, 7.0),
-                     (5.0, 7.0, 4.0),
-                     (0.0, 5.0, 5.0),
-                     (9.0, 4.0, 5.0),
-                     (7.0, 1.0, 2.0),
-                     (0.0, 12.0, 7.0),
-                     (-5.0, -4.0, 5.0),
-                     (6.0, 18.0, 4.0)],
- (16.0, 3.33, 17.0): [(10.0, 0.0, 19.0),
-                      (20.0, 10.0, 15.0),
-                      (18.0, 0.0, 17.0)]\}
+ (3.2, 4.5, 5.9): [(0.0, 1.0, 1.0),
+                   (0.0, 1.0, 7.0),
+                   (5.0, 7.0, 4.0),
+                   (0.0, 5.0, 5.0),
+                   (9.0, 4.0, 5.0),
+                   (7.0, 1.0, 2.0),
+                   (10.0, 0.0, 19.0),
+                   (0.0, 12.0, 7.0),
+                   (-5.0, -4.0, 5.0),
+                   (6.0, 18.0, 4.0)],
+ (19.0, 5.0, 16.0): [(20.0, 10.0, 15.0), (18.0, 0.0, 17.0)]\}
 
     \end{Verbatim}
 
