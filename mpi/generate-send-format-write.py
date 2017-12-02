@@ -123,12 +123,12 @@ def _save_points_distributed(chunk_idx, points):
     if SIZE > 1:
         if Comm.recv(source=((SIZE+RANK-1) % SIZE), tag=WRITE_PERMISSION_TAG):
             _write_points_to_file(points)
+            # Разрешение на запись следущему
+            if SIZE > 1 and chunk_idx + CHUNK_SIZE < POINTS_NUMBER:
+                req = Comm.isend(1, dest=(RANK+1) % SIZE, tag=WRITE_PERMISSION_TAG)
+                req.Free()
     else:
         _write_points_to_file(points)
-    # Разрешение на запись следущему
-    if SIZE > 1 and chunk_idx + CHUNK_SIZE < POINTS_NUMBER:
-        req = Comm.isend(1, dest=(RANK+1) % SIZE, tag=WRITE_PERMISSION_TAG)
-        req.Free()
 
 
 def _save_points_main(chunk_idx, points, _req=[None]):
@@ -181,3 +181,4 @@ time_spend = MPI.Wtime() - time_start
 
 if RANK == 0:
     print(time_spend, file=sys.stderr)
+

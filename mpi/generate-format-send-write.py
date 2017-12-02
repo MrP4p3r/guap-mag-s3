@@ -128,16 +128,17 @@ def _save_points_distributed(chunk_idx, points):
     """Функция для сохранения точек распределенной записью.
     Каждый процесс при получении разрешения на запись записывает свои порцию из CHUNK_SIZE точек в файл
     и отправляет разрешение следующему."""
+    _points_formatted = _pformat(points)
     # Если получено разрешение на запись в файл от предыдущего процесса
     if SIZE > 1:
         if Comm.recv(source=((SIZE+RANK-1) % SIZE), tag=WRITE_PERMISSION_TAG):
-            _write_to_file(_pformat(points))
+            _write_to_file(_points_formatted)
+            # Разрешение на запись следущему
+            if SIZE > 1 and chunk_idx + CHUNK_SIZE < POINTS_NUMBER:
+                req = Comm.isend(1, dest=(RANK+1) % SIZE, tag=WRITE_PERMISSION_TAG)
+                req.Free()
     else:
-        _write_to_file(_pformat(points))
-    # Разрешение на запись следущему
-    if SIZE > 1 and chunk_idx + CHUNK_SIZE < POINTS_NUMBER:
-        req = Comm.isend(1, dest=(RANK+1) % SIZE, tag=WRITE_PERMISSION_TAG)
-        req.Free()
+        _write_to_file(_points_formatted)
 
 
 def _save_points_main(chunk_idx, points, _req=[None]):
